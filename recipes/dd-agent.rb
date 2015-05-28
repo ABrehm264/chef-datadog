@@ -56,7 +56,8 @@ template "#{node['datadog']['config_dir']}/datadog.conf" do
 end
 
 # Common configuration
-service "#{node['datadog']['agent_name']}" do
+service 'datadog-agent' do
+  service_name "#{node['datadog']['agent_name']}"
   action [:enable, agent_action]
   if node['platform_family'] == 'windows'
     supports :restart => true, :start => true, :stop => true
